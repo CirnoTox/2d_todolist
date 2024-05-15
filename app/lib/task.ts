@@ -78,7 +78,6 @@ class Task {
         filteredTask[column] = (this as any)[column];
       }
     });
-    console.log(filteredTask)
     return filteredTask;
   }
   calculatePriority(dueDate: Date, importancy: number): number {
