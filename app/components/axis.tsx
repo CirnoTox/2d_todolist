@@ -3,7 +3,7 @@
 import * as d3 from 'd3';
 import { useEffect, useMemo, useRef, useState } from 'react';
 
-export default function Axis({ hAxis }: { hAxis: number; }) {
+export default function Axis() {
   const Axis = () => {
     const ticks = useMemo(() => {
       const xScale = d3.scaleLinear()

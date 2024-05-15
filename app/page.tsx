@@ -3,23 +3,23 @@ import SideNavBar from "./components/sideNavBar";
 import TaskTable from "./components/taskTable";
 import Axis from "./components/axis";
 import { useEffect, useState } from "react";
-import DynamicHeightDivs from "./components/DynamicHeightDivs";
+import DynamicHeightDivs from "./components/dynamicHeightDivs";
 import mockData from "./lib/mockData";
+import TaskList from "./lib/taskList";
 
 export default function app() {
-  const [hTaskTable, setHTaskTable] = useState(300); // Default height
-  const [hAxis, setHAxis] = useState(400); // Default height
+  const [tl, setTL] = useState(undefined as TaskList | undefined);
   useEffect(() => {
-    let alculatedHTaskTable = Math.floor(0.4 * window.innerHeight);
-    setHTaskTable(alculatedHTaskTable);
-    setHAxis(window.innerHeight - alculatedHTaskTable - 4);
+    setTL(new TaskList(mockData));
   }, []);
   return (
     <main className=" h-dvh">
       <SideNavBar />
       <DynamicHeightDivs
-        topDiv={<TaskTable tasks={mockData} hTaskTable={hTaskTable} />}
-        bottomDiv={<Axis hAxis={hAxis} />}
+        topDiv={
+          tl === undefined ? <></> : <TaskTable tl={tl} setTL={setTL}/>
+        }
+        bottomDiv={<Axis/>}
       />
     </main>
   );

@@ -1,9 +1,8 @@
 # TODO list
 
-0. Algorithms Class
 1. TaskTable improve
-   * column sort/show/hide/move (Hover show "...", click "..." show menu)
-   * task checkbox
+   * column sort/show/hide/move
+   * task statusBox
    * task edit
 2. Message Class
 3. Error Class
@@ -12,3 +11,4 @@
 6. Clock(focus) page
 7. Axis
    * 
+8. Small Game (Get coin after finish a task)

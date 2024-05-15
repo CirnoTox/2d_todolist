@@ -1,5 +1,5 @@
 'use client';
-import Task from "./task";
+import {Task,TaskStatus} from "@/app/lib/task";
 
 const mockData = [new Task(
   "Finish TypeScript project",
@@ -7,21 +7,21 @@ const mockData = [new Task(
   new Date(2024, 4, 20), // May 20, 2024
   50,
   "Work",
-  "In Progress"
+  TaskStatus.In_Progress
 ), new Task(
   "Buy birthday gift",
   "Purchase a birthday gift for my best friend.",
   new Date(2024, 4, 15), // May 15, 2024
   30,
   "Friend",
-  "Pending"
+  TaskStatus.Pending
 ), new Task(
   "Family dinner planning",
   "Organize the menu and guest list for the upcoming family reunion dinner.",
   new Date(2024, 5, 5), // June 5, 2024
   -20,
   "Family",
-  "Completed"
+  TaskStatus.Completed
 )];
 
 const task4 = new Task(
@@ -30,7 +30,7 @@ const task4 = new Task(
   new Date(2024, 4, 25), // May 25, 2024
   60,
   "Developer",
-  "In Progress"
+  TaskStatus.In_Progress
 );
 
 const task5 = new Task(
@@ -39,7 +39,7 @@ const task5 = new Task(
   new Date(2024, 4, 30), // May 30, 2024
   40,
   "Developer",
-  "Pending"
+  TaskStatus.Pending
 );
 
 const task6 = new Task(
@@ -48,7 +48,7 @@ const task6 = new Task(
   new Date(2024, 5, 20), // June 20, 2024
   -10,
   "Work",
-  "Pending"
+  TaskStatus.Pending
 );
 
 const task7 = new Task(
@@ -57,7 +57,7 @@ const task7 = new Task(
   new Date(2024, 5, 10), // June 10, 2024
   80,
   "Work",
-  "In Progress"
+  TaskStatus.In_Progress
 );
 
 const task8 = new Task(
@@ -66,7 +66,7 @@ const task8 = new Task(
   new Date(2024, 5, 15), // June 15, 2024
   70,
   "Developer",
-  "Pending"
+  TaskStatus.Pending
 );
 
 const task9 = new Task(
@@ -75,7 +75,7 @@ const task9 = new Task(
   new Date(2024, 4, 17), // May 17, 2024
   30,
   "Developer",
-  "In Progress"
+  TaskStatus.In_Progress
 );
 
 const task10 = new Task(
@@ -84,7 +84,7 @@ const task10 = new Task(
   new Date(2024, 5, 25), // June 25, 2024
   -30,
   "Work",
-  "Pending"
+  TaskStatus.Pending
 );
 
 const task11 = new Task(
@@ -93,7 +93,7 @@ const task11 = new Task(
   new Date(2024, 6, 1), // July 1, 2024
   20,
   "Developer",
-  "Pending"
+  TaskStatus.Pending
 );
 
 const task12 = new Task(
@@ -102,7 +102,7 @@ const task12 = new Task(
   new Date(2024, 5, 7), // June 7, 2024
   90,
   "Developer",
-  "In Progress"
+  TaskStatus.In_Progress
 );
 
 const task13 = new Task(
@@ -111,7 +111,7 @@ const task13 = new Task(
   new Date(2024, 4, 15), // May 15, 2024
   50,
   "Work",
-  "Completed"
+  TaskStatus.Completed
 );
 
 mockData.push(task4, task5, task6, task7, task8, task9, task10, task11, task12, task13);
