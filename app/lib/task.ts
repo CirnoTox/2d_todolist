@@ -1,4 +1,3 @@
-import { fromJSON } from 'postcss';
 import { v4 as uuidv4 } from 'uuid';
 
 enum TaskStatus {
@@ -72,7 +71,16 @@ class Task {
     const tempTask=new this()
     return Object.getOwnPropertyNames(tempTask)
   }
-
+  getFilteredTask(visibleColumns:string[]):any{
+    const filteredTask: any = {};
+    visibleColumns.forEach(column => {
+      if (column in this) {
+        filteredTask[column] = (this as any)[column];
+      }
+    });
+    console.log(filteredTask)
+    return filteredTask;
+  }
   calculatePriority(dueDate: Date, importancy: number): number {
     const now = new Date();
     const timeDiff = (dueDate.getTime() - now.getTime()) / (1000 * 3600 * 24); // days until due

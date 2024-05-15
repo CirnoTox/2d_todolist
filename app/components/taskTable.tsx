@@ -4,6 +4,7 @@ import TaskList from '@/app/lib/taskList';
 import { TaskStatus } from '@/app/lib/task';
 import { MdOutlineSort } from "react-icons/md";
 import { IoMenu } from "react-icons/io5";
+import { v4 as uuidv4 } from 'uuid';
 
 export default function TaskTable({ tl, setTL }:
   { tl: TaskList, setTL: React.Dispatch<React.SetStateAction<TaskList | undefined>>; }) {
@@ -40,7 +41,9 @@ export default function TaskTable({ tl, setTL }:
     ))
   );
 
-  const renderedData= tl.getRenderData()
+  const renderedData = tl.getRenderData();
+  console.log(renderedData.priorityVisibility);
+  console.log(renderedData.tasks);
 
   const TableHeader = () => (
     <thead style={{ backgroundColor: 'lightblue' }}>
@@ -49,7 +52,7 @@ export default function TaskTable({ tl, setTL }:
           <IoMenu />
           <ColumnVisibilityCheckboxes />
         </th>
-        {tl.priorityVisibility.map((column) => (
+        {renderedData.priorityVisibility.map((column) => (
           <th key={column.name} style={{ borderBottom: '1px solid #ddd' }}>
             {column.name}
             {column.name === 'dueDate' && <button onClick={sortTasksByDueDate}><MdOutlineSort /></button>}
@@ -62,18 +65,27 @@ export default function TaskTable({ tl, setTL }:
 
   const TableBody = () => (
     <tbody>
-      {tl.tasks.filter(task => task.Status !== TaskStatus.Completed).map((task) => (
-        <tr key={task.id}>
-          <td>
-            <div> HEAD </div>
-          </td>
-          {tl.priorityVisibility.map((column) => (
-            <td key={column.name} style={{ borderBottom: '1px solid #ddd' }}>
-              {column.visible ? (task as any)[column.name].toString() : ''}
-            </td>
-          ))}
-        </tr>
-      ))}
+      {renderedData.tasks.filter(task => task.status !== TaskStatus.Completed)
+        .map((task) => {
+          let taskData=JSON.parse(task);
+          console.log(taskData);
+          console.log(taskData["id"]);
+          return (
+            <tr key={"tr" + taskData.id}>
+              <td key={"head" + taskData.id}>
+                <div> HEAD </div>
+              </td>
+              {renderedData.priorityVisibility.map((column) => (
+                <td key={column.name + taskData.id} style={{ borderBottom: '1px solid #ddd' }}>
+                  {column.visible ? (taskData as any)[column.name] : ''}
+                </td>
+              ))}
+            </tr>
+          )
+          
+        }
+        )
+      }
     </tbody>
   );
 

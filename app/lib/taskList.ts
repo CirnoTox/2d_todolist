@@ -17,15 +17,7 @@ class TaskList{
     const visibleColumns = this.priorityVisibility.filter(column => column.visible).map(column => column.name);
 
     const filteredTasks = filtered
-      ? this.tasks.map(task => {
-        const filteredTask: any = {};
-        visibleColumns.forEach(column => {
-          if (column in task) {
-            filteredTask[column] = (task as any)[column];
-          }
-        });
-        return filteredTask;
-      })
+      ? this.tasks.map(task => task.getFilteredTask(visibleColumns))
       : this.tasks;
 
     return {
